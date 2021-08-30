@@ -6,6 +6,15 @@ Compile using the C# compiler
 C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe <Program>.cs
 ```
 
+## FormatShellcode
+Helper class to print the shellcode.
+Expects to have a shellcode.bin file present (generate with MSFvenom: _-f raw -o shellcode.bin_)
+
+Execute it:
+```CMD
+FormatShellcode.exe shellcode.bin
+```
+
 ## InjectLocalProcess
 Injects the shellcode into the current process.
 
