@@ -32,3 +32,6 @@ Execute it:
 ```CMD
 InjectRemoteProcess.exe <ProcessName>
 ```
+
+## PSInject
+Simple PowerShell PoC for local process injection. Since PowerShell leverages the .NET framework, you can re-write every C# code using PowerShell.
