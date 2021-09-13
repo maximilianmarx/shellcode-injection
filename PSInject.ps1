@@ -6,7 +6,7 @@ $Win32 = @"
     	[DllImport("kernel32")]
 	    public static extern IntPtr VirtualAlloc(IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect);
 	        
-	    [DllImport("kernel32", CharSet = CharSet.Ansi)]
+	[DllImport("kernel32", CharSet = CharSet.Ansi)]
 	    public static extern IntPtr CreateThread(IntPtr lpThreadAttributes, uint dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId);
 	        
     	[DllImport("kernel32.dll", SetLastError=true)]
